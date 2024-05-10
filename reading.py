@@ -3,6 +3,13 @@
 Created on Tue Apr 23 14:52:07 2024
 
 @author: Drew.Bennett
+
+
+todo:
+    support tree?
+    each line type has parent. line above it in template block.
+    parent for data line should be last line of parent type.
+    or type above it eg Blackburn 19-20_CL.HMD has no THRESHLD data lines
 """
 
 
@@ -70,7 +77,7 @@ def readTemplates(file,terms):
 
 '''
     class for reading hmd.
-    iterate over instance to get data. (lineType str,{field str:value str})
+    iterate over instance to get data. 
     class rather than function because might want templates or terms.
 '''
 
@@ -85,7 +92,7 @@ class hmdReader:
         if not self.templates:
             raise hmdReadError('Error reading template block.')
             
-            
+    # (lineType str,{field str:value str})        
     def __iter__(self):
         for line in self.file:
             tp = lineType(line,self.terms)
