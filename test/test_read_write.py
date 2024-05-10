@@ -16,7 +16,7 @@ if not d in sys.path:
 
 
 from reading import hmdReader
-from writing import writeHmd
+from writing import hmdWriter
 
 
 def testFile(file):
@@ -24,12 +24,13 @@ def testFile(file):
         reader = hmdReader(f)
         outFile = os.path.splitext(file)[0] + '_out.hmd'
         with open(outFile,'w') as f2:
-            writeHmd(file = f2,data = reader,templates = reader.templates,terms = reader.terms)
+            w = hmdWriter.fromReader(file = f2,reader = reader)
+            w.writeFile(data = reader)
     with open(file,'r') as f:
         inputText = f.read().strip()
     with open(outFile,'r') as f2:
         outputText = f2.read().strip()
-    assert inputText == outputText    
+    assert inputText == outputText
     
 
 if __name__ in ('__main__','__console__'):

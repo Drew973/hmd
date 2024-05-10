@@ -92,7 +92,7 @@ class hmdReader:
         if not self.templates:
             raise hmdReadError('Error reading template block.')
             
-    # (lineType str,{field str:value str})        
+    # (lineType str,{field str:value str})  
     def __iter__(self):
         for line in self.file:
             tp = lineType(line,self.terms)
